@@ -73,7 +73,6 @@ def create_city(city: pydantic_models.CityCreate, db: Session = Depends(get_db))
 
 @app.post("/cities/autocomplete", tags={"Cities"})
 def autocomplete_city_name(term: str, db: Session = Depends(get_db)):
-    print("Term is: " + term)
     return cities.autocomplete_city_name(db=db, term=term)
 
 ########################################################

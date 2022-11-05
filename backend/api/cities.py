@@ -23,4 +23,4 @@ def create_city(db: Session, city: pydantic_models.CityCreate):
     return db_city
 
 def autocomplete_city_name(db: Session, term: str):
-    return db.query(db_models.City.city).filter(db_models.City.city.contains(term)).limit(5).all()
+    return db.query(db_models.City).filter(db_models.City.city.contains(term)).limit(5).all()
