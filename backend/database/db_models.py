@@ -1,8 +1,7 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Float
 from sqlalchemy.orm import relationship
 
 from .database import Base
-
 
 class User(Base):
     __tablename__ = "users"
@@ -14,7 +13,6 @@ class User(Base):
 
     items = relationship("Item", back_populates="owner")
 
-
 class Item(Base):
     __tablename__ = "items"
 
@@ -24,3 +22,13 @@ class Item(Base):
     owner_id = Column(Integer, ForeignKey("users.id"))
 
     owner = relationship("User", back_populates="items")
+
+class City(Base):
+    __tablename__ = "cities"
+
+    id          = Column(Integer, primary_key=True, index=True)
+    country     = Column(String(64))
+    city        = Column(String(128))
+    longitude   = Column(Float)
+    latitude    = Column(Float)
+    population  = Column(Integer)
