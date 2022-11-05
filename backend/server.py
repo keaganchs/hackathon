@@ -1,7 +1,7 @@
 from typing import List
 
 import uvicorn
-from api import cities, users
+from api import cities
 from database import db_models, pydantic_models
 from database.database import SessionLocal, engine
 from fastapi import Depends, FastAPI, HTTPException, Request, status
