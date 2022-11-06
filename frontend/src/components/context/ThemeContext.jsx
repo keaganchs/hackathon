@@ -4,6 +4,7 @@ export const themes = {
   light: {
     foreground: 'black',
     background: 'white',
+    headerBackground: 'white',
     highlight: 'gray',
     text: 'black',
     link: 'darkblue',
@@ -13,6 +14,7 @@ export const themes = {
   dark: {
     foreground: 'white',
     background: 'black',
+    headerBackground: 'rgb(20, 20, 20)',
     highlight: 'gray',
     text: 'white',
     link: 'lightblue',
@@ -29,7 +31,7 @@ export const ThemeProvider = ({ children }) => {
     document.documentElement.style.setProperty('--main-color', theme.foreground);
     document.documentElement.style.setProperty('--highlight-color', theme.highlight);
     document.documentElement.style.setProperty('--background-color', theme.background);
-    document.documentElement.style.setProperty('--header-background', theme.background);
+    document.documentElement.style.setProperty('--header-background', theme.headerBackground);
     document.documentElement.style.setProperty('--header-highlight', theme.highlight);
     document.documentElement.style.setProperty('--main-text-color', theme.text);
     document.documentElement.style.setProperty('--link-text-color', theme.link);

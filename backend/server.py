@@ -75,6 +75,13 @@ def create_city(city: pydantic_models.CityCreate, db: Session = Depends(get_db))
 def autocomplete_city_name(term: str, db: Session = Depends(get_db)):
     return cities.autocomplete_city_name(db=db, term=term)
 
+# Maps
+########################################################
+
+@app.get("/maps/")
+def get_map():
+    pass
+
 ########################################################
 #                    Start Server                      #
 ########################################################

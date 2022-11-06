@@ -19,8 +19,8 @@ function ThemeTogglerButton() {
   }
 
   return (
-    <button id={"ToggleThemeButton"} onClick={toggleTheme} style={{backgroundColor:theme.background, color:theme.foreground}}>
-      <img src={themeChangeIcon} alt="Sun and moon icon to toggle light and dark themes" width={"50px"} height={"50px"}/>
+    <button id={"ToggleThemeButton"} onClick={toggleTheme} style={{backgroundColor:theme.headerBackground}}>
+      <img src={themeChangeIcon} alt="Small sun or moon icon to switch between the light or dark theme" width={"50px"} height={"50px"}/>
     </button>
   );
 }

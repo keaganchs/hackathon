@@ -1,0 +1,12 @@
+TODO:
+
+Backend:
+- Allow file streaming for maps (API)
+- Store maps in database (schemas + models)
+- Add map generation endpoints (first a query for cities that are connected, if failed generate a new map)
+
+Frontend:
+- Display map image
+
+Generator:
+- figure out how to set up program on my computer or servers on jackson's

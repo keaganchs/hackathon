@@ -10,7 +10,7 @@ const Header = () => {
   const {theme} = useContext(ThemeContext)
 
   return (
-    <div className="header" style={{color:theme.foreground, backgroundColor:theme.background}}>
+    <div className="header" style={{color:theme.foreground, backgroundColor:theme.headerBackground}}>
       <h1 style={{margin: "20px"}}>Welcome to <i>Carbon Trainer</i></h1>
 
       <ThemeTogglerButton />
