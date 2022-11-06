@@ -6,6 +6,9 @@ from database import db_models, pydantic_models
 def get_city(db: Session, city_id: int) -> pydantic_models.City:
     return db.query(db_models.City).filter(db_models.City.id == city_id).first()
 
+def get_city_by_name(db: Session, city_name: str) -> pydantic_models.City:
+    return db.query(db_models.City).filter(db_models.City.name == city_name).first()
+
 def get_cities(db: Session, skip: int = 0, limit: int = 100) -> List[pydantic_models.City]:
     return db.query(db_models.City).offset(skip).limit(limit).all()
 

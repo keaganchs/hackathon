@@ -1,15 +1,14 @@
 from typing import List
 
 import uvicorn
-from api import cities
+from api import cities, maps
+from api.add_test_data_to_database import add_test_data_to_db
 from database import db_models, pydantic_models
 from database.database import SessionLocal, engine
 from fastapi import Depends, FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from sqlalchemy.orm import Session
-
-from api.add_test_data_to_database import add_test_data_to_db
 
 ########################################################
 #                        Setup                         #
@@ -79,8 +78,8 @@ def autocomplete_city_name(term: str, db: Session = Depends(get_db)):
 ########################################################
 
 @app.get("/maps/")
-def get_map():
-    pass
+def get_map_from_city_names(first_city_name: str, second_city_name: str):
+    return maps.get_map(first_city_name=first_city_name, second_city_name=second_city_name)
 
 ########################################################
 #                    Start Server                      #

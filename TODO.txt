@@ -4,6 +4,7 @@ Backend:
 - Allow file streaming for maps (API)
 - Store maps in database (schemas + models)
 - Add map generation endpoints (first a query for cities that are connected, if failed generate a new map)
+- Estimate CO2 use
 
 Frontend:
 - Display map image

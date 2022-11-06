@@ -1,5 +1,7 @@
 from typing import Union
 
+from sqlalchemy import BLOB
+
 from pydantic import BaseModel
 
 # Cities
@@ -21,3 +23,19 @@ class City(CityBase):
     class Config:
         orm_mode = True
 
+# Maps
+########################################################
+
+class MapBase(BaseModel):
+    first_country   = str
+    second_country  = str
+    map_image       = BLOB
+    
+class MapCreate(MapBase):
+    pass
+
+class Map(MapBase):
+    id: int
+    
+    class Config:
+        orm_mode = True
