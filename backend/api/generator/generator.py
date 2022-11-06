@@ -10,10 +10,7 @@ import matplotlib.pyplot as plt
 from math import radians, sin, cos, acos
 import numpy as np
 
-def generate_map_figure(country1, city1, lon1, lat1, pop1, country2, city2, lon2, lat2, pop2):
-    # a1, a2 = data_retrieve('Germany', 'Munich', 11.5820, 48.1351, 1472000, 'Germany', 'Bremen', 8.8017, 53.0793, 569352)
-    a1=[country1, city1, lon1, lat1, pop1]
-    a2=[country2, city2, lon2, lat2, pop2]
+def generate_map_figure(lon1, lat1, pop1, lon2, lat2, pop2):
 
     def great_circle(lon1, lat1, lon2, lat2):
         lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
@@ -62,5 +59,6 @@ def generate_map_figure(country1, city1, lon1, lat1, pop1, country2, city2, lon2
 
     #plt.show()
     plt.savefig('map.png')
+    plt.close()
     
     return fig

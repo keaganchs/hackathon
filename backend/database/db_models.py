@@ -19,4 +19,4 @@ class Map(Base):
     id              = Column(Integer, primary_key=True, index=True)
     first_city      = Column(String(128))
     second_city     = Column(String(128))
-    map_image       = BLOB()
+    map_image       = Column(BLOB())

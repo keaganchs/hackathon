@@ -7,7 +7,7 @@ from database import db_models, pydantic_models
 from database.database import SessionLocal, engine
 from fastapi import Depends, FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, FileResponse
 from sqlalchemy.orm import Session
 
 ########################################################
@@ -77,9 +77,37 @@ def autocomplete_city_name(term: str, db: Session = Depends(get_db)):
 # Maps
 ########################################################
 
-@app.get("/maps/")
-def get_map_from_city_names(first_city_name: str, second_city_name: str):
-    return maps.get_map(first_city_name=first_city_name, second_city_name=second_city_name)
+@app.get("/maps/{first_city_name}/{second_city_name}", response_model=pydantic_models.Map, tags={"Maps"})
+def get_map_from_city_names(first_city_name: str, second_city_name: str, db: Session = Depends(get_db)):
+    return maps.get_map(db=db, first_city_name=first_city_name, second_city_name=second_city_name)
+
+@app.get("/maps/", response_model=List[pydantic_models.Map], tags={"Maps"})
+def get_all_maps(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    return maps.get_maps(db=db, skip=skip, limit=limit)
+
+@app.delete("/maps/{map_id}", tags={"Maps"})
+def delete_map(map_id: int, db: Session = Depends(get_db)):
+    return maps.delete_map(db=db, map_id=map_id)
+
+# Figures
+########################################################
+
+@app.get("/figures/", response_class=FileResponse, tags={"Figures"})
+async def get_figure():
+    return "./map.png" 
+
+# CO2 Savings
+########################################################
+@app.get("/savings/", response_model=int, tags={"CO2 Savings"})
+def get_savings_in_tons_of_co2(number_of_commuters, distance):
+    # Cars produce approximately 123.4 g CO2 / km
+    # Distance in km
+    # Populations of the cities
+    grams_of_co2_from_cars = 123.4 * distance * number_of_commuters
+    grams_to_save = grams_of_co2_from_cars * 0.66
+
+    response = {"grams_of_co2_from_cars": grams_of_co2_from_cars, "grams_to_save": grams_to_save}
+    return response
 
 ########################################################
 #                    Start Server                      #
