@@ -24,6 +24,7 @@
 
 # backend
 /backend/venv
+/backend/map.png
 
 # pycache
 /backend/__pycache__
