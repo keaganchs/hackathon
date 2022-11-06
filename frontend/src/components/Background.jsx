@@ -4,7 +4,7 @@ import { useParallax } from 'react-scroll-parallax';
 import CoolTrain from '../assets/CoolTrain.jpeg'
 
 const Background = () => {
-  const parallax = useParallax({ speed: 10 });
+  const parallax = useParallax({ speed: 5 });
 
   return (
     <div ref={ parallax.ref }>

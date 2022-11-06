@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <div className="header" style={{color:theme.foreground, backgroundColor:theme.background}}>
-      <h1>Welcome to <i>Carbon Trainer</i></h1>
+      <h1 style={{margin: "20px"}}>Welcome to <i>Carbon Trainer</i></h1>
 
       <ThemeTogglerButton />
     </div>

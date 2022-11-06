@@ -6,14 +6,18 @@ export const themes = {
     background: 'white',
     highlight: 'gray',
     text: 'black',
-    link: 'darkblue'
+    link: 'darkblue',
+    gradientDark: 'rgb(235, 235, 235)',
+    gradientLight: 'rgb(253, 253, 253)'
   },
   dark: {
     foreground: 'white',
     background: 'black',
     highlight: 'gray',
     text: 'white',
-    link: 'lightblue'
+    link: 'lightblue',
+    gradientDark: 'rgb(25, 25, 25)',
+    gradientLight: 'rgb(20, 20, 20)'
   }
 }
 
@@ -29,6 +33,8 @@ export const ThemeProvider = ({ children }) => {
     document.documentElement.style.setProperty('--header-highlight', theme.highlight);
     document.documentElement.style.setProperty('--main-text-color', theme.text);
     document.documentElement.style.setProperty('--link-text-color', theme.link);
+    document.documentElement.style.setProperty('--background-gradient-dark', theme.gradientDark);
+    document.documentElement.style.setProperty('--background-gradient-light', theme.gradientLight);
 
   }, [ theme ])
 

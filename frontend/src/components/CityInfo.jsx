@@ -1,14 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import '../App.css'
+import { useParallax } from 'react-scroll-parallax';
 
 import CONFIG from "../CONFIG.json"
 
-const CityInfo = () => {
+const CityInfo = ({title, setCityDataFunc}) => {
   const cityDataURL = CONFIG.backendServer + "/cities/"
-  
-  const [cityData, setCityData] = useState()
-  const [cityId, setCityId] = useState()
+  const parallax = useParallax({ speed: -5 });
 
   const [searchedCity, setSearchedCity] = useState("")
   const [suggestedCities, setSuggestedCities] = useState([])
@@ -22,31 +21,22 @@ const CityInfo = () => {
     .then(json => {
       setSuggestedCities(json)
     })
-  }, [searchedCity])
+  }, [searchedCity, cityDataURL])
 
   // Console log suggested city array
   useEffect(() => {
     console.log(suggestedCities)
   }, [suggestedCities])
 
-  const showCity = ({cityData}) => {
-    console.log("cityData: " + cityData)
-    
-    return (
-      <div>
-        
-      </div>
-    )
-  } 
-
   return (
-    <div style={{position: "relative"}}>
-      <input type="text" name="citySearch" defaultValue={""} onChange={e => setSearchedCity(e.target.value)} />
+    <div className="CitySearchContainer" ref={parallax.ref}>
+      <h2 style={{textAlign: "center"}}>{title}</h2>
+      <input type="text" name="citySearch" defaultValue={""} onChange={e => setSearchedCity(e.target.value)} style={{minWidth: "250px"}} />
       <p>
         {suggestedCities?.map((city, i) => {
           return (
             <li key={"city" + i}>
-              <button onClick={e => showCity(city)}>{city.city}</button>
+              <button onClick={e => setCityDataFunc(city)}>{city.city}</button>
             </li>
           );
         })}
