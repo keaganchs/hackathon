@@ -98,8 +98,8 @@ async def get_figure():
 
 # CO2 Savings
 ########################################################
-@app.get("/savings/", response_model=int, tags={"CO2 Savings"})
-def get_savings_in_tons_of_co2(number_of_commuters, distance):
+@app.get("/savings/" , response_class=JSONResponse, tags={"CO2 Savings"})
+def get_savings_in_tons_of_co2(number_of_commuters: float, distance: float):
     # Cars produce approximately 123.4 g CO2 / km
     # Distance in km
     # Populations of the cities

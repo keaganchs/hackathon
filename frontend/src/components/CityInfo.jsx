@@ -24,9 +24,9 @@ const CityInfo = ({title, setCityDataFunc}) => {
   }, [searchedCity, cityDataURL])
 
   // Console log suggested city array
-  useEffect(() => {
-    console.log(suggestedCities)
-  }, [suggestedCities])
+  // useEffect(() => {
+  //   console.log(suggestedCities)
+  // }, [suggestedCities])
 
   return (
     <div className="CitySearchContainer" ref={parallax.ref}>

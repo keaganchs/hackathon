@@ -9,18 +9,27 @@ import { ThemeProvider } from './components/context/ThemeContext';
 import Info from './components/Info';
 import Header from './components/Header';
 import CityInfo from './components/CityInfo';
-import ShowCity from "./components/ShowCity";
+import ShowCity from './components/ShowCity';
 import Background from './components/Background';
+import CarbonSavings from './components/CarbonSavings';
 
 import CONFIG from './CONFIG.json'
 
 function App() {
 
-  const [map, setMap] = useState("")
+  // const [map, setMap] = useState("")
   // const [co2Savings, setCo2Savings] = useState(0)
 
   const [firstCityData, setFirstCityData] = useState()
   const [secondCityData, setSecondCityData] = useState()
+
+  const RenderMap = () => {
+    return (
+      <div style={{justifyContent: "center", textAlign: "center"}}>
+        <img src="http://127.0.0.1:8000/figures/" alt="Map" style={{left: "50%"}}/>
+      </div>
+    )
+  }
 
 
   // After initial page load, add transition to all elements
@@ -30,13 +39,16 @@ function App() {
   }, [])
 
   useEffect(() => {
-    console.log("First city data: " + firstCityData)
-    console.log("Second city data: " + secondCityData)
     
-    fetch(CONFIG.backendServer + "/figures/")
-    .then(map => setMap(map))
-    .then("Map: " + console.log(map))
-  }, [firstCityData, secondCityData, map])
+    if (firstCityData !== undefined && secondCityData !== undefined) {
+      let firstCityName = firstCityData.city
+      let secondCityName = secondCityData.city
+
+      fetch(CONFIG.backendServer + "/figures/" + {firstCityName} + "/" + {secondCityName})
+      .then(RenderMap)
+    }
+
+  }, [firstCityData, secondCityData])
 
   return (
     <ParallaxProvider>
@@ -58,8 +70,14 @@ function App() {
               <ShowCity cityData={secondCityData} style={{minWidth: "250px"}}/>
             </div>
 
-            <img src="http://127.0.0.1:8000/figures/" alt="Map" style={{left: "50%"}}/>
+            <div>
+              <RenderMap />
+            </div>
             
+            <div>
+              <CarbonSavings />
+            </div>
+
             {/* <p style={{textAlign: "center"}}>Using a train could save up to {} tons of CO2!</p> */}
 
             <Background />

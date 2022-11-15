@@ -43,7 +43,7 @@ h1, h2, h3, h4 {
 }
 
 .App {
-  height: 200vh;
+  height: 250vh;
 }
 
 .BackgroundGradient {
@@ -51,7 +51,7 @@ h1, h2, h3, h4 {
   left: 50%;
 
   width: 60%;
-  min-height: 200vh;
+  min-height: 250vh;
   height: 100%;
 
   transform: translateX(-50%);
