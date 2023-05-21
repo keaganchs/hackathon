@@ -1,5 +1,7 @@
 # hackathon
-Our project for *JacobsHack! 2022*, "Carbon Trainer", aims to show the possible carbon savings of a railway between two cities by estimating the construction costs and replaced automotive traffic.
+Our project for *JacobsHack! 2022*, "Carbon Trainer", aims to show the possible carbon savings of a railway between two cities by estimating the construction costs and replaced automotive traffic.  
+
+This code is mostly functional, but there were a few bugs that we didn't have time to sort out by the submission deadline.  
 
 # Quick start
 
